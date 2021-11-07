@@ -23,4 +23,4 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       
       - run: |
-          az webapp list --query
+          az webapp list --query "[?state=='Running']"
