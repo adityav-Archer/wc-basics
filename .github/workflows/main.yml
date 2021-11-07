@@ -39,7 +39,7 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
-              az storage blob upload-batch --account-name <STORAGE_ACCOUNT_NAME> --auth-mode key -d '$web/myapp@${{steps.vars.outputs.tag}}' -s dist
+              az storage blob upload-batch --account-name mytestwebcomponents --auth-mode key -d '$web/myapp@${{steps.vars.outputs.tag}}' -s dist
       - name: logout
         run: |
             az logout
