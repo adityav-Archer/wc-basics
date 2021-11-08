@@ -75,7 +75,7 @@ export class Dropdown extends LitElement {
         <link rel="stylesheet" href="https://unpkg.com/@material/button@11.0.0/dist/mdc.button.min.css">
         <link rel="stylesheet" href="https://unpkg.com/@material/button@11.0.0/dist/mdc.fab.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <mwc-select id="test" label="Behavior" @click="${this.handleSelectClick}">
+        <mwc-select id="test" label="Custom Dropdown" @click="${this.handleSelectClick}">
         <mwc-list-item>
             <slot name="meta"> <mwc-fab mini icon="add" @click="${this.handleBtnClick}"></mwc-fab></slot>
         </mwc-list-item>
