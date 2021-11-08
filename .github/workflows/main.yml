@@ -45,7 +45,7 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
-              az cdn endpoint purge --content-paths  "/*" --profile-name "mytestwebcomponents-cdn" --name "mytestwebcomponents-cdn.azureedge.net" --resource-group "MyResourceGroup"
+              az cdn endpoint purge --content-paths  "/*" --profile-name "mytestwebcomponents-cdn" --name "mytestwebcomponents-cdn" --resource-group "MyResourceGroup"
       - name: logout
         run: |
             az logout
