@@ -40,6 +40,12 @@ jobs:
           azcliversion: 2.0.72
           inlineScript: |
               az storage blob upload-batch --account-name mytestwebcomponents --auth-mode key -d '$web/myapp@${{steps.vars.outputs.tag}}' -s dist
+      - name: Purge CDN endpoint
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+              az cdn endpoint purge --content-paths  "/*" --profile-name mytestwebcomponents-cdn --name mytestwebcomponents-cdn.azureedge.net --resource-group MyResourceGroup
       - name: logout
         run: |
             az logout
