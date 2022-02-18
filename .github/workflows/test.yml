@@ -28,7 +28,7 @@ jobs:
           script: |
             const version = context.ref.split("/").pop();
             const tagName = version.slice(1, version.length);
-            core.exportVariable('versionTag' , tagName
+            core.exportVariable('versionTag' , tagName);
       
       - name: Check output
         env:
