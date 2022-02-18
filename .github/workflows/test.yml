@@ -20,22 +20,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Set output
-        id: vars
-        run: |
-          echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-     
-      - name: Check output
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ steps.vars.outputs.tag }}
+      
       - name: Variables
         id: variables
         uses: actions/github-script@v3
         with:
           script: |
-            const branchDetails = context.ref;
-            console.log(branchDetails);
+            const version = context.ref.split("/").pop();
+            const tagName = version.slice(1, version.length);
+            core.exportVariable('versionTag' , tagName
       
+      - name: Check output
+        env:
+          RELEASE_VERSION: ${{ steps.variables.outputs.versionTag }}
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ steps.variables.outputs.versionTag }}
