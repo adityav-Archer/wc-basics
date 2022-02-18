@@ -22,7 +22,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set output
         id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        run: |
+          echo ::set-output name=tag::${GITHUB_REF#refs/*/}
      
       - name: Check output
         env:
@@ -30,4 +31,11 @@ jobs:
         run: |
           echo $RELEASE_VERSION
           echo ${{ steps.vars.outputs.tag }}
+      - name: Variables
+        id: variables
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const branchDetails = context.ref;
+            console.log(branchDetails);
       
