@@ -3,12 +3,7 @@
 name: CI
 
 # Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    tags:
-      - v*.*.*
-  
+on: push
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -29,11 +24,15 @@ jobs:
             const version = context.ref.split("/").pop();
             const tagName = version.slice(1, version.length);
             core.setOutput('versionTag' , tagName);
-      
+      - id: set-matrix
+        run: |
+          JSON=$(cat ./your.json)
+          echo "::set-output name=matrix::${JSON//'%'/'%25'}"
       - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.variables.outputs.versionTag }}
         run: |
+          echo "JSON is: ${{steps.set-matrix-outputs.matrix}}" 
           echo $RELEASE_VERSION
           echo "Version is: ${{ steps.variables.outputs.versionTag }} "
      
