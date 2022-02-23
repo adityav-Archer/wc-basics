@@ -33,12 +33,10 @@ jobs:
           content="${content//$'\r'/'%0D'}"
           # end of optional handling for multi line json
           echo "::set-output name=packageJson::$content"
-      - name: Add Variables
-        env:
-          PACKAGE_VERSION: "${{fromJson(steps.set_var.outputs.packageJson).version}}"
       - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.variables.outputs.versionTag }}
+          PACKAGE_VERSION: ${{fromJson(steps.set_var.outputs.packageJson).version}}
         run: |
           echo $PACKAGE_VERSION
      
