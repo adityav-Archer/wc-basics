@@ -26,7 +26,7 @@ jobs:
             core.setOutput('versionTag' , tagName);
       - id: set-matrix
         run: |
-          JSON=$(cat ./your.json)
+          JSON=$(cat ./package.json)
           echo "::set-output name=matrix::${JSON//'%'/'%25'}"
       - name: Check output
         env:
