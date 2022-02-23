@@ -27,7 +27,7 @@ jobs:
       - id: set-matrix
         run: |
           JSON=$(cat ./package.json)
-          echo "::set-output name=matrix::${JSON//'%'/'%25'}"
+          echo ::set-output name=matrix::${JSON//'%'/'%25'}
       - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.variables.outputs.versionTag }}
