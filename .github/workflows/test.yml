@@ -26,7 +26,7 @@ jobs:
             core.setOutput('versionTag' , tagName);
       - id: set_var
         run: |
-          content=`cat ./path/to/package.json`
+          content=`cat ./package.json`
           # the following lines are only required for multi line json
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
