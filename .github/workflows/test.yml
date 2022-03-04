@@ -28,7 +28,8 @@ jobs:
             const version = context.ref.split("/").pop();
             const tagName = version.slice(1, version.length);
             core.setOutput('versionTag' , tagName);
-      - id: set_var
+      - name: set vars
+        id: set_var
         run: |
           content=`cat ./package.json`
           # the following lines are only required for multi line json
